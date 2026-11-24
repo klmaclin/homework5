@@ -87,3 +87,56 @@ ggplot(baltimore_monthly, aes(x = month, y = homicides)) +
 
 
 ```
+
+
+# vertical reference line 
+
+```{r vertical line}
+
+
+ggplot(baltimore_monthly, aes(x = month, y = homicides)) +
+  geom_col(aes(fill = season)) +
+  scale_fill_manual(values = c("Summer" = "gray", "Winter" = "lightblue")) + 
+   geom_smooth(
+    method = "loess",
+    span = 0.1,
+    se = FALSE,
+    color = "blue",
+    linewidth = .5
+  ) +
+  geom_vline(
+    xintercept = as.Date("2015-04-12"),
+    color = "red",
+    linetype = "dashed",
+    linewidth = 1
+  )
+
+
+```
+
+
+```{r text insert}
+
+
+ggplot(baltimore_monthly, aes(x = month, y = homicides)) +
+  geom_col(aes(fill = season)) +
+  scale_fill_manual(values = c("Summer" = "gray", "Winter" = "lightblue")) + 
+   geom_smooth(
+    method = "loess",
+    span = 0.1,
+    se = FALSE,
+    color = "blue",
+    linewidth = .5
+  ) +
+  geom_vline(
+    xintercept = as.Date("2015-04-12"),
+    color = "red",
+    linetype = "dashed",
+    linewidth = 1
+  ) + 
+  annotate("text", x = as.Date("2015-04-12"),
+           y = 50, label = "Freddie Gray arrested", color = "red", 
+           hjust = -0.1,
+           size = 3)
+
+```
