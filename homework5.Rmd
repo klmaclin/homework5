@@ -43,3 +43,10 @@ head(baltimore_monthly)
 
 
 ```
+
+```{r plot}
+
+ggplot(baltimore_monthly, aes(x = month, y = homicides)) + 
+  geom_col(aes(fill = season))
+
+```
