@@ -64,3 +64,26 @@ ggplot(baltimore_monthly, aes(x = month, y = homicides)) +
 
 
 ```
+
+
+# adding smooth line to help show trends 
+
+```{r smooth line}
+
+
+ggplot(baltimore_monthly, aes(x = month, y = homicides)) +
+  geom_col(aes(fill = season)) +
+  scale_fill_manual(values = c(
+    "Summer" = "grey",
+    "Winter" = "lightblue"
+  )) +
+  geom_smooth(
+    method = "loess",
+    span = 0.1,
+    se = FALSE,
+    color = "blue",
+    linewidth = .5
+  )
+
+
+```
