@@ -44,9 +44,23 @@ head(baltimore_monthly)
 
 ```
 
+# creating the plot 
+
 ```{r plot}
 
 ggplot(baltimore_monthly, aes(x = month, y = homicides)) + 
   geom_col(aes(fill = season))
+
+```
+
+# changing the season colors 
+
+```{r}
+
+
+ggplot(baltimore_monthly, aes(x = month, y = homicides)) +
+  geom_col(aes(fill = season)) +
+  scale_fill_manual(values = c("Summer" = "gray", "Winter" = "lightblue"))
+
 
 ```
