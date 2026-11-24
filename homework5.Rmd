@@ -5,8 +5,41 @@ date: "2026-11-16"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+# Opening libraries and reading data
+
+```{r setup}
+
+library(tidyverse)
+library(lubridate)
+
+homicides <- read_csv("data/homicide-data.csv")
+
+head(homicides)
+str(homicides)
+
 ```
 
+# cleaning and preparing data
 
+```{r data}
+
+colnames(homicides)
+
+baltimore_monthly <- homicides %>%
+  filter(city == "Baltimore", state == "MD") %>%
+  mutate(date = ymd(reported_date),
+         month = floor_date(date, "month")) %>%
+  group_by(month) %>%
+  summarise(homicides = n()) %>%
+  ungroup() %>%
+  mutate(season = if_else(
+    month(month) %in% 5:10,
+    "Summer",
+    "Winter"
+  ))
+
+head(baltimore_monthly)
+
+
+```
