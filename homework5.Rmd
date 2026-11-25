@@ -368,13 +368,13 @@ scale_y_continuous(
 
 ggplot(baltimore_monthly, aes(x = month, y = homicides)) +
   geom_col(aes(fill = season), color = "gray55", linewidth = 0.2) +
-  scale_fill_manual(values = c("Summer" = "gray", "Winter" = "lightblue")) + 
+  scale_fill_manual(values = c("Summer" = "lightgray", "Winter" = "lightblue")) + 
    geom_smooth(
   method = "loess",
   span = 0.12,
   se = FALSE,
   color = "royalblue",
-  linewidth = 1.5
+  linewidth = 0.9
 )+
   geom_vline(
     xintercept = as.Date("2015-04-12"),
@@ -411,6 +411,7 @@ scale_y_continuous(
   panel.grid.major = element_line(color = "gray45"),
   panel.grid.minor = element_line(color = "gray48"),
   legend.position = "bottom",
+  aspect.ratio = 0.165,
   legend.key.size = unit(0.8, "cm")
 ) 
 
