@@ -215,3 +215,45 @@ ggplot(baltimore_monthly, aes(x = month, y = homicides)) +
   )
 
 ```
+
+# adjusting plot format
+
+```{r changing plot format}
+
+ggplot(baltimore_monthly, aes(x = month, y = homicides)) +
+  geom_col(aes(fill = season)) +
+  scale_fill_manual(values = c("Summer" = "gray", "Winter" = "lightblue")) + 
+   geom_smooth(
+    method = "loess",
+    span = 0.1,
+    se = FALSE,
+    color = "blue",
+    linewidth = .5
+  ) +
+  geom_vline(
+    xintercept = as.Date("2015-04-12"),
+    color = "red",
+    linetype = "dashed",
+    linewidth = 1
+  ) + 
+  annotate("text", x = as.Date("2015-04-12"),
+           y = 50, label = "Arrest of Freddie Gray", color = "white", 
+           hjust = -0.1,
+           size = 3) +
+  labs(
+    title = "Homicides in Baltimore, MD",
+    x = NULL,
+    y = "Monthly Homicides",
+    fill = NULL
+  ) +
+  theme_gray() +
+  theme(
+  panel.background = element_rect(fill = "gray50"),
+  plot.background = element_rect(fill = "white"),
+  panel.grid.major = element_line(color = "gray45"),
+  panel.grid.minor = element_line(color = "gray48"),
+  legend.position = "bottom",
+  legend.key.size = unit(0.8, "cm")
+)
+
+```
